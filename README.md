@@ -108,6 +108,7 @@ Build your ARO using the Service Principal account
 
 `az aro create --resource-group $RESOURCEGROUP --cluster-resource-group $CLUSTERRG --name $CLUSTERNAME --vnet-resource-group $NETWORKRG --vnet $VNET  --client-id $SP_APPID --client-secret $SP_PASSWD --master-subnet $MASTSUB  --worker-subnet $WORKSUB --pull-secret @pull-secret.txt`
 
+---
 After the install, fetch your credentials & console URL
 
 `az aro list-credentials --name $CLUSTERNAME --resource-group $RESOURCEGROUP`
@@ -122,13 +123,15 @@ It should look like this...
 
 `az aro show --name $CLUSTERNAME --resource-group $RESOURCEGROUP --query "consoleProfile.url" -o tsv`
 
+---
 Access ARO using the CLI
 
 `apiServer=$(az aro show -g $RESOURCEGROUP -n $CLUSTERNAME --query apiserverProfile.url -o tsv)`
 
 `oc login $apiServer -u kubeadmin -p <kubeadmin_password>`
 
-#### Deleting Your Cluster
+---
+Deleting Your Cluster
 
 To delete your cluster just pass the `az aro delete`, this will remove all dynamicly generated content through the `az aro` build strips above. The primary resource-group, network resrouce-group, vnet and subs will remain.
 
