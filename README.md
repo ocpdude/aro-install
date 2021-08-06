@@ -135,4 +135,4 @@ Deleting Your Cluster
 
 To delete your cluster just pass the `az aro delete`, this will remove all dynamicly generated content through the `az aro` build strips above. The primary resource-group, network resrouce-group, vnet and subs will remain.
 
-`az aro delete --release-group $RESOURCEGROUP --name $CLUSTERNAME`
+`az aro delete --resource-group $RESOURCEGROUP --name $CLUSTERNAME`
