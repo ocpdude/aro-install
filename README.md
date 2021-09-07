@@ -90,7 +90,7 @@ Set the User Access Administrator Role on the Service Principal for each resourc
 
 Set the Network Contributor Role on the Service Principal for the VNET
 
-`az ad sp create-for-rbac --role "Network Contributor" --name $SP_ID --scopes /subscriptions/7d30620f-7f0b-4dd6-991c-7c93bd4c48cf/resourceGroups/$NETWORKRG/providers/Microsoft.Network/virtualNetworks/$VNET`
+`az ad sp create-for-rbac --role "Network Contributor" --name $SP_ID --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$NETWORKRG/providers/Microsoft.Network/virtualNetworks/$VNET`
 
 Pull your Service Principal ID & Password
 
