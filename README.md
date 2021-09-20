@@ -40,11 +40,13 @@ export MASTSUB=<master_subnet>
 export WORKSUB=<worker_subnet>
 
 export SP_ID=<service_principal>
+
+export SUBSCRIPTION=<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx>
 ```
 
 Set the subcription to use (if needed)
 
-`az account set --subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx`
+`az account set --subscription $SUBSCRIPTION`
 
 Register resource providers for the subscription
 
@@ -82,15 +84,15 @@ Configure your network-subnets
 
 Set the Contributor Role on the Service Principal for each resource-group
 
-`az ad sp create-for-rbac --role "Contributor" --name $SP_ID --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$RESOURCEGROUP  /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$NETWORKRG`
+`az ad sp create-for-rbac --role "Contributor" --name $SP_ID --scopes /subscriptions/$SUBSCRIPTION /subscriptions/$SUBSCRIPTION/resourceGroups/$RESOURCEGROUP  /subscriptions/$SUBSCRIPTION/resourceGroups/$NETWORKRG`
 
 Set the User Access Administrator Role on the Service Principal for each resource-group
 
-`az ad sp create-for-rbac --role "User Access Administrator" --name $SP_ID --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$RESOURCEGROUP /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$NETWORKRG`
+`az ad sp create-for-rbac --role "User Access Administrator" --name $SP_ID --scopes /subscriptions/$SUBSCRIPTION/resourceGroups/$RESOURCEGROUP /subscriptions/$SUBSCRIPTION/resourceGroups/$NETWORKRG`
 
 Set the Network Contributor Role on the Service Principal for the VNET
 
-`az ad sp create-for-rbac --role "Network Contributor" --name $SP_ID --scopes /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/resourceGroups/$NETWORKRG/providers/Microsoft.Network/virtualNetworks/$VNET`
+`az ad sp create-for-rbac --role "Network Contributor" --name $SP_ID --scopes /subscriptions/$SUBSCRIPTION/resourceGroups/$NETWORKRG/providers/Microsoft.Network/virtualNetworks/$VNET`
 
 Pull your Service Principal ID & Password
 
