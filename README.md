@@ -23,8 +23,10 @@ There are two ways to install ARO, with your own DNS domain or with one randomly
 
 
 ----
-Environment Variables to simplfy the installation tasks
+Environment Variables to simplfy the installation tasks: Modify the script below for your purposes... note the network settings for the VNET & Subs.
 ```
+export LOCATION=<Azure region>
+
 export RESOURCEGROUP=<provisioned_rg>
 
 export CLUSTERRG=<dynamic_cluster_rg>
@@ -33,13 +35,13 @@ export CLUSTERNAME=<ocp_clustername>
 
 export NETWORKRG=<provisioned_vnet_rg>
 
-export VNET=<provisioned_vnet>
+export VNET=<provisioned_vnet_name>
 
-export MASTSUB=<master_subnet>
+export MASTSUB=<master_subnet_name>
 
-export WORKSUB=<worker_subnet>
+export WORKSUB=<worker_subnet_name>
 
-export SP_ID=<service_principal>
+export SP_ID=<service_principal_name>
 
 export SUBSCRIPTION=<xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx>
 ```
@@ -62,11 +64,11 @@ az provider register -n Microsoft.Authorization --wait
 
 Create your primary resource-group
 
-`az group create --name $RESOURCEGROUP --location eastus`
+`az group create --name $RESOURCEGROUP --location $LOCATION`
 
 Create your network-resource-group
 
-`az group create --name $NETWORKRG --location eastus`
+`az group create --name $NETWORKRG --location $LOCATION`
 
 Set your VNET CIDR
 
